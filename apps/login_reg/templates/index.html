@@ -1,0 +1,42 @@
+{% extends './layout.html' %}
+{% block body %}
+{% block title %}Login & Reg | Home{% endblock title %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    
+    <h2>Registration</h2>
+    
+    <form action="/process/" method="post">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" placeholder="Keith">
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" placeholder="Richards">
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="email@email.com">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Password">
+        <label for="confirm">Confirm Password:</label>
+        <input type="password" name="confirm" placeholder="Confirm Password">
+        <input type="submit" value="Register">
+    </form>
+    <br>
+
+    <h2>Login</h2>
+
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="email@email.com">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Login">
+    </form>
+
+{% endblock body %}
